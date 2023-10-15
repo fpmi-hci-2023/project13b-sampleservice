@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: sample
+    spec:
+      containers:
+        - image: ghcr.io/fpmi-hci-2023/sample:latest
+          name: sample
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: sample-config
+          resources:
+            limits:
+              cpu: 200m
+              memory: 100Mi
+            requests:
+              cpu: 100m
+              memory: 50Mi
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: github-container-registry
