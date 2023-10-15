@@ -18,7 +18,7 @@ jobs:
   build_and_push:
     uses: "fpmi-hci-2023/project13b-chatgpt/.github/workflows/docker_build_and_publish.yaml@main"
     with:
-      name: servicediscovery
+      name: sample
       build_src: ${{ github.event.inputs.build_src }}
     secrets:
       gh_sudo_token: ${{ secrets.GH_SUDO_TOKEN }}
@@ -26,8 +26,6 @@ jobs:
     uses: "fpmi-hci-2023/project13b-chatgpt/.github/workflows/k8s_deploy.yaml@main"
     needs: build_and_push
     with:
-      name: servicediscovery
-      image_tag: ${{ needs.build_and_push.outputs.image_tag }}
-      k8s_cluster_name: ${{ vars.K8S_CLUSTER }}
+      serviceName: sample
     secrets:
       gh_sudo_token: ${{ secrets.GH_SUDO_TOKEN }}

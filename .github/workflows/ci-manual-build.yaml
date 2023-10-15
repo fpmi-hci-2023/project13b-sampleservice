@@ -21,6 +21,6 @@ jobs:
     needs: lint
     uses: "fpmi-hci-2023/project13b-chatgpt/.github/workflows/docker_build_and_publish.yaml@main"
     with:
-      name: sampleservice
+      name: sample
     secrets:
       gh_sudo_token: ${{ secrets.GH_SUDO_TOKEN }}
