@@ -43,7 +43,7 @@ jobs:
       - name: Main
         run: |
           ls
-          node scripts/setup-npm-version.js
+          helm repo update
       - name: Package Helm Chart
         run: helm package ../charts/sample
       - name: Publish Helm Chart
