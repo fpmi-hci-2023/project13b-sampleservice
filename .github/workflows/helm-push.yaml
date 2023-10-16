@@ -2,13 +2,6 @@ name: "Push Helm Chart to GHCR"
 
 on:
   workflow_dispatch:
-    secrets:
-      gh_sudo_token:
-        required: true
-      kubernetes_secret:
-        required: true
-      kubernetes_url:
-        required: true
 
 permissions:
   id-token: write
