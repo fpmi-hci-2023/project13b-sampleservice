@@ -1,0 +1,33 @@
+name: "Push Helm Chart to GHCR"
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+  actions: read
+  security-events: write
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Set up Helm
+        uses: azure/setup-helm@v1
+      - name: Package Helm Chart
+        run: helm package ./charts/sample
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish Helm Chart
+        run: |
+          helm repo add hci-pr13b ghcr.io/${{ github.repository_owner }}/hci-pr13b
+          helm repo update
+          helm push --username ${{ github.repository_owner }} --password ${{ secrets.GITHUB_TOKEN }} ./charts hci-pr13b
