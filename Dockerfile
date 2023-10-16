@@ -1,4 +1,4 @@
-ARG GO_VERSION=1.21.1
+ARG GO_VERSION=1.21.3
 
 ################
 # BUILD target #
