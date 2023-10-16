@@ -36,10 +36,6 @@ jobs:
         run: helm repo add stable https://charts.helm.sh/stable
       - name: Update Helm Repo
         run: helm repo update
-      - name: Main
-        run: |
-          ls
-          helm repo update
       - name: Package Helm Chart
         run: helm package charts/sample
       - name: Publish Helm Chart
