@@ -40,8 +40,12 @@ jobs:
         run: helm repo add stable https://charts.helm.sh/stable
       - name: Update Helm Repo
         run: helm repo update
+      - name: Main
+        run: |
+          ls
+          node scripts/setup-npm-version.js
       - name: Package Helm Chart
-        run: helm package ../../charts/sample
+        run: helm package ../charts/sample
       - name: Publish Helm Chart
         run: |
           helm repo add hci-pr13b ghcr.io/${{ github.repository_owner }}/hci-pr13b
