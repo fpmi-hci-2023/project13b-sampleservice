@@ -40,6 +40,6 @@ jobs:
         run: helm package charts/sample
       - name: Publish Helm Chart
         run: |
-          helm repo add hci-pr13b ghcr.io/${{ github.repository_owner }}/hci-pr13b
+          helm repo add hci-pr13b https://ghcr.io/${{ github.repository_owner }}/hci-pr13b
           helm repo update
           helm push --username ${{ github.repository_owner }} --password ${{ secrets.GITHUB_TOKEN }} ./charts hci-pr13b
