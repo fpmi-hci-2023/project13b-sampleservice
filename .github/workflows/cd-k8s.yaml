@@ -7,8 +7,12 @@ on:
         description: "Src version to build. For GitTag: \"tag:[name]\", For GitBranch: \"branch:[name]\", For GitCommit: \"commit:[hash]\", For EcrTag: \"ecr:[tag]\", For PullRequest: \"pr:[number]\""
         required: false
         default: 'branch:main'
+  push:
+    branches:
+      - main
 
 permissions:
+  deployments: write
   id-token: write
   contents: read
   actions: read
